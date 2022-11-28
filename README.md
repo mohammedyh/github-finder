@@ -1,4 +1,4 @@
-# github-finder
+# github-finder-railway
 A JavaScript application to search for GitHub users and display their information.
 
 ## Screenshot - Original
