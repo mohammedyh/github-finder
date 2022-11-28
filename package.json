@@ -1,10 +1,28 @@
 {
-  "name": "http-nodejs",
+  "name": "github-finder-railway",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Aiden Bai",
+  "author": "mohammedyh",
   "license": "MIT",
   "scripts": {
-    "start": "node server.mjs"
+    "start": "nodemon server.mjs"
+  },
+  "description": "A JavaScript application to search for GitHub users and display their information.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohammedyh/github-finder-railway.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/mohammedyh/github-finder-railway/issues"
+  },
+  "homepage": "https://github.com/mohammedyh/github-finder-railway#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "node-fetch": "2"
   }
 }
