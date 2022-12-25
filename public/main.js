@@ -124,25 +124,26 @@ const showUserInfo = e => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                 </svg>
 
-                <h2 class="ml-2 text-gray-400 text-sm lg:text-lg">${res.data.company}</h2>
+                <h2 class="ml-2 text-gray-400 text-sm lg:text-lg">${
+									res.data.company ?? 'No company'
+								}</h2>
               </div>
             </div>
           </div>
         </div>
       `;
-    })
-    .catch(() => {
-      userInfoWrapper.innerHTML = "";
-      errorWrapper.classList.remove("opacity-0", "invisible");
-      errorWrapper.innerHTML = `
+		})
+		.catch(() => {
+			userInfoWrapper.innerHTML = '';
+			errorWrapper.innerHTML = `
           <div class="flex justify-center px-5 py-4 bg-red-100 border border-red-400 text-red-700 mt-6 rounded" role="alert">
             <strong class="font-bold mr-1">Holy smokes!</strong>
             <span>No account was found with the provided username, please try again</span>
           </div>
         `;
-      setTimeout(() => errorWrapper.classList.add("opacity-0", "invisible"), 4000);
-    });
-  e.preventDefault();
+			setTimeout(() => errorWrapper.firstElementChild.remove(), 3000);
+		});
+	e.preventDefault();
 };
 
-btn.addEventListener("click", showUser);
+btn.addEventListener('click', showUserInfo);
