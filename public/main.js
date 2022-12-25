@@ -1,23 +1,24 @@
-const userInfoWrapper = document.querySelector(".user__info-wrapper");
-const errorWrapper = document.querySelector(".error__wrapper");
-const btn = document.querySelector("#search-btn");
-const input = document.querySelector("input");
+const userInfoWrapper = document.querySelector('.user__info-wrapper');
+const errorWrapper = document.querySelector('.error__wrapper');
+const btn = document.querySelector('#search-btn');
+const input = document.querySelector('input');
 
-const getUser = async () => {
-  const userInput = input.value.trim();
-  const user = await fetch(`/user/${userInput}`);
-  const data = await user.json();
-  input.value = "";
-  return { data };
+const getUserData = async () => {
+	const userInput = input.value.trim();
+	const user = await fetch(`/user/${userInput}`);
+	const data = await user.json();
+	input.value = '';
+	return { data };
 };
 
-const showUser = (e) => {
-  getUser()
-    .then((res) => {
-      if (!res.data.login)
-        throw Error("No user exists with the provided username");
+const showUserInfo = e => {
+	getUserData()
+		.then(res => {
+			if (!res.data.login) {
+				throw Error('No user exists with the provided username');
+			}
 
-      userInfoWrapper.innerHTML = `
+			userInfoWrapper.innerHTML = `
         <div class="w-5/6 lg:max-w-4xl p-6 md:p-10 mx-auto flex flex-col items-center md:flex-row md:items-start bg-slate-800 rounded-xl shadow-lg">
           <div class="flex">
             <img
@@ -29,36 +30,44 @@ const showUser = (e) => {
 
           <div class="user__info w-full mt-10 md:mt-4 md:ml-10">
             <div class="flex items-center md:items-start flex-col lg:flex-row lg:justify-between">
-              <h1 class="basis-2/3 lg:basis-auto text-2xl lg:text-3xl font-bold text-white" id="name">${res.data.name}</h1>
+              <h1 class="basis-2/3 lg:basis-auto text-2xl lg:text-3xl font-bold text-white" id="name">${
+								res.data.name ?? res.data.login
+							}</h1>
               <h1 class="basis-1/3 lg:basis-auto mt-2 md:mt-0 text-sm sm:text-base lg:text-lg text-gray-400">
                 Joined ${new Date(res.data.created_at).toDateString()}
               </h1>
             </div>
 
             <h1 class="mt-2 md:mt-1 md:text-lg lg:text-xl text-blue-600 selection:bg-slate-900 text-center md:text-left">
-              <a href="${res.data.html_url}" rel="noreferrer noopener" target="_blank">
+              <a href="${res.data.html_url}" rel="noopener" target="_blank">
                 @${res.data.login}
               </a>
             </h1>
 
             <h1 class="mt-6 md:text-lg lg:text-xl text-gray-400 text-center md:text-left">
-              ${res.data.bio}
+              ${res.data.bio ?? 'No bio'}
             </h1>
 
             <div class="max-w-full mx-auto flex justify-between p-6 lg:p-8 mt-6 bg-slate-900 rounded-xl">
               <div>
                 <h2 class="text-gray-400 text-sm sm:text-base lg:text-lg">Repos</h2>
-                <h2 class="text-white text-lg sm:text-xl lg:text-2xl font-bold">${res.data.public_repos}</h2>
+                <h2 class="text-white text-lg sm:text-xl lg:text-2xl font-bold">${
+									res.data.public_repos
+								}</h2>
               </div>
 
               <div>
                 <h2 class="text-gray-400 text-sm sm:text-base lg:text-lg">Followers</h2>
-                <h2 class="text-white text-lg sm:text-xl lg:text-2xl font-bold">${res.data.followers}</h2>
+                <h2 class="text-white text-lg sm:text-xl lg:text-2xl font-bold">${
+									res.data.followers
+								}</h2>
               </div>
 
               <div>
                 <h2 class="text-gray-400 text-sm sm:text-base lg:text-lg">Following</h2>
-                <h2 class="text-white text-lg sm:text-xl lg:text-2xl font-bold">${res.data.following}</h2>
+                <h2 class="text-white text-lg sm:text-xl lg:text-2xl font-bold">${
+									res.data.following
+								}</h2>
               </div>
             </div>
 
@@ -69,7 +78,9 @@ const showUser = (e) => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
 
-                <h2 class="ml-2 text-gray-400 text-sm lg:text-lg">${res.data.location}</h2>
+                <h2 class="ml-2 text-gray-400 text-sm lg:text-lg">${
+									res.data.location ?? 'No location'
+								}</h2>
               </div>
 
               <div class="flex items-center">
@@ -81,18 +92,19 @@ const showUser = (e) => {
                   <a
                     class="transition duration-150 hover:text-blue-600"
                     href="${
-                      res.data.blog.startsWith('http://') || res.data.blog.startsWith('https://')
-                        ? res.data.blog
-                        : "//" + res.data.blog
-                    }"
+											res.data.blog.startsWith('http://') ||
+											res.data.blog.startsWith('https://')
+												? res.data.blog
+												: '//' + res.data.blog
+										}"
                     rel="noreferrer noopener"
                     target="_blank"
                   >
                     ${
-                      res.data.blog
-                        ? res.data.blog.replace(/(^\w+:|^)\/\//, '')
-                        : "null"
-                    }
+											res.data.blog
+												? res.data.blog.replace(/(^\w+:|^)\/\//, '')
+												: 'No blog'
+										}
                   </a>
                 </h2>
               </div>
@@ -102,7 +114,9 @@ const showUser = (e) => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                 </svg>
 
-                <h2 class="ml-2 text-gray-400 text-sm lg:text-lg">${res.data.email}</h2>
+                <h2 class="ml-2 text-gray-400 text-sm lg:text-lg">${
+									res.data.email ?? 'No email'
+								}</h2>
               </div>
 
               <div class="flex items-center">
