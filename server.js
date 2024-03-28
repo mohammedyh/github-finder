@@ -6,13 +6,12 @@ dotenv.config();
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const __dirname = path.resolve(path.dirname(''));
 
 app.use(express.static('public'));
 app.use(express.json());
 
 app.get('/', (_req, res) => {
-	res.sendFile(path.join(__dirname, 'public', 'index.html'));
+	res.sendFile(path.join(import.meta.dirname, 'public', 'index.html'));
 });
 
 app.get('/user/:userName', async (req, res) => {
