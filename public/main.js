@@ -30,44 +30,44 @@ const showUserInfo = e => {
 
           <div class="user__info w-full mt-10 md:mt-4 md:ml-10">
             <div class="flex items-center md:items-start flex-col lg:flex-row lg:justify-between">
-              <h1 class="basis-2/3 lg:basis-auto text-2xl lg:text-3xl font-bold text-white" id="name">${
+              <h2 class="basis-2/3 lg:basis-auto text-2xl lg:text-3xl font-bold text-white">${
 								res.data.name ?? res.data.login
-							}</h1>
-              <h1 class="basis-1/3 lg:basis-auto mt-2 md:mt-0 text-sm sm:text-base lg:text-lg text-gray-400">
+							}</h2>
+              <p class="basis-1/3 lg:basis-auto mt-2 md:mt-0 text-sm sm:text-base lg:text-lg text-gray-400">
                 Joined ${new Date(res.data.created_at).toDateString()}
-              </h1>
+              </p>
             </div>
 
-            <h1 class="mt-2 md:mt-1 md:text-lg lg:text-xl text-blue-600 selection:bg-slate-900 text-center md:text-left">
+            <p class="mt-2 md:mt-1 md:text-lg lg:text-xl text-blue-600 selection:bg-slate-900 text-center md:text-left">
               <a href="${res.data.html_url}" rel="noopener" target="_blank">
                 @${res.data.login}
               </a>
-            </h1>
+            </p>
 
-            <h1 class="mt-6 md:text-lg lg:text-xl text-gray-400 text-center md:text-left">
+            <p class="mt-6 md:text-lg lg:text-xl text-gray-400 text-center md:text-left">
               ${res.data.bio ?? 'No bio'}
-            </h1>
+            </p>
 
             <div class="max-w-full mx-auto flex justify-between p-6 lg:p-8 mt-6 bg-slate-900 rounded-xl">
               <div>
-                <h2 class="text-gray-400 text-sm sm:text-base lg:text-lg">Repos</h2>
-                <h2 class="text-white text-lg sm:text-xl lg:text-2xl font-bold">${
+                <p class="text-gray-400 text-sm sm:text-base lg:text-lg">Repos</p>
+                <p class="text-white text-lg sm:text-xl lg:text-2xl font-bold">${
 									res.data.public_repos
-								}</h2>
+								}</p>
               </div>
 
               <div>
-                <h2 class="text-gray-400 text-sm sm:text-base lg:text-lg">Followers</h2>
-                <h2 class="text-white text-lg sm:text-xl lg:text-2xl font-bold">${
+                <p class="text-gray-400 text-sm sm:text-base lg:text-lg">Followers</p>
+                <p class="text-white text-lg sm:text-xl lg:text-2xl font-bold">${
 									res.data.followers
-								}</h2>
+								}</p>
               </div>
 
               <div>
-                <h2 class="text-gray-400 text-sm sm:text-base lg:text-lg">Following</h2>
-                <h2 class="text-white text-lg sm:text-xl lg:text-2xl font-bold">${
+                <p class="text-gray-400 text-sm sm:text-base lg:text-lg">Following</p>
+                <p class="text-white text-lg sm:text-xl lg:text-2xl font-bold">${
 									res.data.following
-								}</h2>
+								}</p>
               </div>
             </div>
 
@@ -78,9 +78,9 @@ const showUserInfo = e => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
 
-                <h2 class="ml-2 text-gray-400 text-sm lg:text-lg">${
+                <p class="ml-2 text-gray-400 text-sm lg:text-lg">${
 									res.data.location ?? 'No location'
-								}</h2>
+								}</p>
               </div>
 
               <div class="flex items-center">
@@ -88,7 +88,7 @@ const showUserInfo = e => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
                 </svg>
 
-                <h2 class="ml-2 text-gray-400 text-sm lg:text-lg">
+                <p class="ml-2 text-gray-400 text-sm lg:text-lg">
                   <a
                     class="transition duration-150 hover:text-blue-600"
                     href="${
@@ -106,7 +106,7 @@ const showUserInfo = e => {
 												: 'No blog'
 										}
                   </a>
-                </h2>
+                </p>
               </div>
 
               <div class="flex items-center basis-1/2">
@@ -114,9 +114,9 @@ const showUserInfo = e => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                 </svg>
 
-                <h2 class="ml-2 text-gray-400 text-sm lg:text-lg">${
+                <p class="ml-2 text-gray-400 text-sm lg:text-lg">${
 									res.data.email ?? 'No email'
-								}</h2>
+								}</p>
               </div>
 
               <div class="flex items-center">
@@ -124,9 +124,9 @@ const showUserInfo = e => {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                 </svg>
 
-                <h2 class="ml-2 text-gray-400 text-sm lg:text-lg">${
+                <p class="ml-2 text-gray-400 text-sm lg:text-lg">${
 									res.data.company ?? 'No company'
-								}</h2>
+								}</p>
               </div>
             </div>
           </div>
