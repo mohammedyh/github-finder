@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const app = express();
-
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
@@ -15,11 +14,19 @@ app.get('/', (_req, res) => {
 });
 
 app.get('/user/:userName', async (req, res) => {
-	const user = await fetch(
-		`https://api.github.com/users/${req.params.userName}?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.API_KEY}`
-	);
-	const data = await user.json();
-	res.status(200).json(data);
+	try {
+		const userData = await fetch(
+			`https://api.github.com/users/${req.params.userName}?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.API_KEY}`
+		);
+		const data = await userData.json();
+		res.status(200).json(data);
+	} catch (error) {
+		res.status(500).json({
+			message: error.message,
+		});
+	}
 });
 
-app.listen(PORT, () => console.log(`server running on http://localhost:${PORT}`));
+app.listen(PORT, () =>
+	console.log(`server running on http://localhost:${PORT}`)
+);
