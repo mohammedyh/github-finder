@@ -14,7 +14,11 @@ const getUserData = async () => {
 
 		const data = await response.json();
 
-		if (data.message == 'Not Found') {
+		if (data?.error) {
+			throw new Error(data.message);
+		}
+
+		if (data?.message == 'Not Found') {
 			throw new Error(
 				'No account was found with the provided username, please try again'
 			);
