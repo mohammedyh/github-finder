@@ -66,21 +66,21 @@ const showUserInfo = async e => {
                <div>
                  <p class="text-gray-400 text-sm sm:text-base lg:text-lg">Repos</p>
                  <p class="text-white text-lg sm:text-xl lg:text-2xl font-bold">
-                   ${res.data.public_repos}
+                   ${new Intl.NumberFormat().format(res.data.public_repos)}
                  </p>
                </div>
 
                <div>
                  <p class="text-gray-400 text-sm sm:text-base lg:text-lg">Followers</p>
                  <p class="text-white text-lg sm:text-xl lg:text-2xl font-bold">
-                   ${res.data.followers}
+                   ${new Intl.NumberFormat().format(res.data.followers)}
                  </p>
                </div>
 
                <div>
                  <p class="text-gray-400 text-sm sm:text-base lg:text-lg">Following</p>
                  <p class="text-white text-lg sm:text-xl lg:text-2xl font-bold">
-                   ${res.data.following}
+                   ${new Intl.NumberFormat().format(res.data.following)}
                  </p>
                </div>
              </div>
