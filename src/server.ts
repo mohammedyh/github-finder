@@ -14,7 +14,7 @@ app.get('/users/:userName', validateUsernameParam, async c => {
 
 	try {
 		const userData = await fetch(
-			`https://api.github.com/users/${userName.trim()}`
+			`https://api.github.com/users/${userName}`
 		);
 
 		if (!userData.ok) {
