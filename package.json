@@ -3,11 +3,14 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts",
+    "build": "esbuild src/server.ts --bundle --platform=node --outfile=dist/server.js --format=esm"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.1",
     "dotenv": "^16.4.5",
+    "esbuild": "^0.24.0",
     "hono": "^4.6.3"
   },
   "devDependencies": {
