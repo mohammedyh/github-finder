@@ -21,6 +21,16 @@ app.get('/users/:userName', validateUsernameParam, async c => {
 			`https://api.github.com/users/${userName}?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.API_KEY}`
 		);
 
+		if (userData.headers.get('x-ratelimit-remaining') == '0') {
+			return c.json(
+				{
+					error: true,
+					message: 'API rate limit exceeded. No further requests allowed.',
+				},
+				429
+			);
+		}
+
 		if (!userData.ok) {
 			if (userData.status == 404) {
 				return c.json(
@@ -35,16 +45,6 @@ app.get('/users/:userName', validateUsernameParam, async c => {
 					message: 'There was an error processing your request.',
 				},
 				500
-			);
-		}
-
-		if (userData.headers.get('x-ratelimit-remaining') == '0') {
-			return c.json(
-				{
-					error: true,
-					message: 'API rate limit exceeded. No further requests allowed.',
-				},
-				429
 			);
 		}
 
