@@ -57,6 +57,5 @@ app.get('/users/:userName', validateUsernameParam, async c => {
 
 serve({
 	fetch: app.fetch,
-	// @ts-ignore
-	port: process.env.PORT || 3000,
+	port: parseInt(process.env.PORT!) || 3000,
 });
